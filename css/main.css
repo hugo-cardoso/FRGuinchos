@@ -99,6 +99,7 @@ Author's custom styles
 body {
   font-family: 'Open Sans', sans-serif;
   padding-top: 50px;
+  background: #000;
 }
 
 *:focus {
@@ -138,7 +139,7 @@ MAP
 
 .map {
   width: 100%;
-  height: 50vh;
+  height: 350px;
   background: #D6D6D5;
   position: relative;
 }
@@ -149,9 +150,9 @@ MAP
   top: 15px;
   border-radius: 3px;
   width: calc(100% - 30px);
-  height: 80px;
   background: #FFF;
   z-index: 999;
+  overflow: hidden;
 }
 
 .adress .adress_line {
@@ -191,15 +192,25 @@ MAP
   border: 0px;
   margin: 0px;
   padding: 0px;
+  padding-right: 5px;
   height: 100%;
   width: 100%;
   font-size: 14px;
   display: block;
 }
 
+.adress #orcar {
+  width: 100%;
+  height: 40px;
+  background: #000;
+  color: #FFF;
+  border: 0px;
+}
+
 #map {
   width: 100%;
   height: 100%;
+  padding-top: 40px;
 }
 
 #centerMap {

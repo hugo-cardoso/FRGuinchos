@@ -61,8 +61,8 @@ function center(lat,lng) {
   getAdress(lat,lng);
   map = new google.maps.Map(document.getElementById('map'), {
     mapTypeId: 'roadmap',
-    zoom: 15,
-    center: new google.maps.LatLng(parseFloat(lat),parseFloat(lng)),
+    zoom: 17,
+    center: new google.maps.LatLng(parseFloat(lat + 0.00090),parseFloat(lng)),
     zoomControl: false,
     scaleControl: true,
     streetViewControl: false,
@@ -88,6 +88,8 @@ function center(lat,lng) {
       anchor: new google.maps.Point(25, 50)
     }
   });
+
+
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
   directionsDisplay.setMap(map);
@@ -98,11 +100,29 @@ function center(lat,lng) {
     });
   });
 
+
 }
 
 function centerMap(){
   var latLng = marker.getPosition();
-  map.setCenter(latLng);
+  offsetCenter(latLng,0,0.2);
+}
+
+function offsetCenter(latlng, offsetX, offsetY) {
+
+  var center = latlng;
+
+  var span = map.getBounds().toSpan();
+
+  var newCenter = {
+    lat: center.lat() + span.lat()*offsetY,
+    lng: center.lng() + span.lng()*offsetX
+  };
+
+  console.log(newCenter);
+
+  map.panTo(newCenter);
+
 }
 
 $("#centerMap").click(function(){
