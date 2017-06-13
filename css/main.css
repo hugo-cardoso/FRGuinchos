@@ -288,6 +288,12 @@ input.form-control {
   color: #FFF;
 }
 
+#view2 h1 {
+  margin: 0px;
+  padding: 0px;
+  margin: 10px 0px; 
+}
+
 /*
   Slides
 */
@@ -415,7 +421,7 @@ input.form-control {
   */
 
   .container {
-    width: calc(1024px - 30px);
+    width: calc(1024px   - 30px);
     padding: 0px 15px;
     margin: 0px auto;
   }

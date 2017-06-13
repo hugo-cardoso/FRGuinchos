@@ -24,6 +24,14 @@ $(".hamburger, aside a").click(function(){
 
 // Maps
 
+$("#voltarOrcar").click(function(){
+
+  $("#view2").hide(function(){
+    $("#view1").show();
+  })
+
+})
+
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
@@ -36,13 +44,25 @@ function getLocation() {
         lat: Number(position.coords.latitude),
         lng: Number(position.coords.longitude)
       };
+      center(aqui.lat,aqui.lng);
 
+    }, function(){
+
+      console.log("GPS Desligado.");
+
+      aqui = {
+        lat: Number(-23.5505487),
+        lng: Number(-46.436233)
+      };
       center(aqui.lat,aqui.lng);
 
     });
   } else {
-    console.log("Geolocation is not supported by this browser.");
+
+    console.log("Teste"); 
+
   }
+
 }
 
 function center(lat,lng) {
@@ -50,7 +70,11 @@ function center(lat,lng) {
   getAdress(lat,lng);
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
-    center: new google.maps.LatLng(parseFloat(lat),parseFloat(lng))
+    center: new google.maps.LatLng(parseFloat(lat),parseFloat(lng)),
+    zoomControl: false,
+    scaleControl: true,
+    streetViewControl: false,
+    fullscreenControl: true
   });
   var marker = new google.maps.Marker({
     position: aqui,
@@ -94,6 +118,7 @@ function getPriceKm(km){
 
   var distante = parseInt(km  / 1000);
   var price = 120 + (2 * distante);
+  var price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   console.log("Preço: R$" + price)
   $("#price").html(price);
@@ -110,9 +135,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     destination: destino,
     travelMode: 'DRIVING',
     waypoints: [
-      {
-        location: new google.maps.LatLng(parseFloat(aqui.lat),parseFloat(aqui.lng))
-      }
+    {
+      location: new google.maps.LatLng(parseFloat(aqui.lat),parseFloat(aqui.lng))
+    }
     ]
   }, function(response, status) {
 
@@ -123,7 +148,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       var totalKm = 0;
 
       for (var i = 0; i < response.routes[0].legs.length; i++) {
-        
+
         totalKm += response.routes[0].legs[i].distance.value;
 
       }
@@ -131,6 +156,10 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       console.log(totalKm);
 
       getPriceKm(totalKm);
+
+      $("#view1").hide(function(){
+        $("#view2").show();
+      })
 
     } 
 
@@ -152,14 +181,14 @@ $("#orcar").click(function(){
     aqui = {lat: lat, lng: lng};
 
     $.get( "https://maps.googleapis.com/maps/api/geocode/json?address=" + destino + "&key=AIzaSyAgXBzHEtFvOvuuBktjuCH8r_e1_CC6LHU", function( data2 ) {
-        
-        $("#destino").val(data2.results[0].formatted_address);
-        
-        destinoCoord = data2.results[0].geometry.location;
 
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
+      $("#destino").val(data2.results[0].formatted_address);
 
-      });
+      destinoCoord = data2.results[0].geometry.location;
+
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+    });
 
   });
 
