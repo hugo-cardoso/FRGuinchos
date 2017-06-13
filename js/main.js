@@ -13,6 +13,13 @@ $(".hamburger, aside a").click(function(){
 
 });
 
+$(".menu-icon, .aside-bg").click(function(){
+
+  $(".aside-bg").toggleClass("active");
+  $("aside").toggleClass("active");
+
+});
+
 // Maps
 
 $(".adress_input input").keyup(function(){
@@ -216,7 +223,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       var whatsappMsg = "*Preciso de um guincho!* "+"\r\n\r\n" + "*Origem*: " + retirada + "\r\n\r\n*Destino*: " + destino;
       whatsappMsg = window.encodeURIComponent(whatsappMsg);
 
-      $("#whatsapp").attr("href", whatsappLink + whatsappMsg);
+      $("whatsapp").attr("href", whatsappLink + whatsappMsg);
 
       $(".msgWaiting").hide(function(){
         $(".orcamento").show();

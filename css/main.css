@@ -131,6 +131,42 @@ body {
   line-height: 50px;
 }
 
+aside {
+  position: fixed;
+  width: 70vw;
+  height: 100%;
+  background: #FFF;
+  left: -70vw;
+  top: 0px;
+  z-index: 1001;
+  transition: left 0.2s linear;
+}
+
+aside.active {
+  left: 0px;
+}
+
+aside .aside-top {
+  width: 100%;
+  height: 150px;
+  background: #000;
+}
+
+.aside-bg {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 1000;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+}
+
+.aside-bg.active {
+  display: block;
+}
+
 /*
 
 MAP
@@ -266,6 +302,9 @@ MAP
   color: #FFF;
   background: transparent;
   margin-bottom: 5px;
+  text-decoration: none;
+  line-height: 50px;
+  text-align: center;
 }
 
 .orcamento .btn-share:last-child {
