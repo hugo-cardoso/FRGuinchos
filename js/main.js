@@ -1,12 +1,3 @@
-$(document).ready(function(){
-  $('.slides').slick({
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 7000
-  });
-});
-
-
 $(".hamburger, aside a").click(function(){
 
   var elm = $(".hamburger i");
@@ -59,7 +50,7 @@ function getLocation() {
     });
   } else {
 
-    console.log("Teste"); 
+    console.log("Teste");
 
   }
 
@@ -69,22 +60,54 @@ function center(lat,lng) {
 
   getAdress(lat,lng);
   map = new google.maps.Map(document.getElementById('map'), {
+    mapTypeId: 'roadmap',
     zoom: 15,
     center: new google.maps.LatLng(parseFloat(lat),parseFloat(lng)),
     zoomControl: false,
     scaleControl: true,
     streetViewControl: false,
-    fullscreenControl: true
+    fullscreenControl: false,
+    mapTypeControl: false,
+    styles: [
+      {
+        featureType: 'poi',
+        stylers: [
+          { visibility: "off" }
+        ]
+      }
+    ]
   });
-  var marker = new google.maps.Marker({
+  marker = new google.maps.Marker({
     position: aqui,
-    map: map
+    map: map,
+    id: 'markerAqui',
+    icon: {
+      'url':'img/pin.png',
+      scaledSize: new google.maps.Size(25, 50),
+      origin: new google.maps.Point(0,0),
+      anchor: new google.maps.Point(25, 50)
+    }
   });
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
   directionsDisplay.setMap(map);
 
+  google.maps.event.addListenerOnce(map, 'idle', function(){
+    $(".mapLoading").hide(function(){
+      $("#map").show();
+    });
+  });
+
 }
+
+function centerMap(){
+  var latLng = marker.getPosition();
+  map.setCenter(latLng);
+}
+
+$("#centerMap").click(function(){
+  centerMap();
+});
 
 function getAdress(lat,lng){
 
@@ -97,20 +120,20 @@ function getAdress(lat,lng){
 
 
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-var R = 6371; // Radius of the earth in km
-var dLat = deg2rad(lat2-lat1);  // deg2rad below
-var dLon = deg2rad(lon2-lon1);
-var a =
-Math.sin(dLat/2) * Math.sin(dLat/2) +
-Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
-Math.sin(dLon/2) * Math.sin(dLon/2)
-;
-var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-var d = R * c; // Distance in km
-var d = parseInt(d);
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1);
+  var a =
+  Math.sin(dLat/2) * Math.sin(dLat/2) +
+  Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+  Math.sin(dLon/2) * Math.sin(dLon/2)
+  ;
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  var d = R * c; // Distance in km
+  var d = parseInt(d);
 
-console.log(d);
-return d;
+  console.log(d);
+  return d;
 
 }
 
@@ -127,6 +150,9 @@ function getPriceKm(km){
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
+  marker['markerAqui'];
+  marker.setMap(null);
+
   var destino = document.getElementById("destino").value;
   var retirada = document.getElementById("retirada").value;
 
@@ -135,9 +161,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     destination: destino,
     travelMode: 'DRIVING',
     waypoints: [
-    {
-      location: new google.maps.LatLng(parseFloat(aqui.lat),parseFloat(aqui.lng))
-    }
+      {
+        location: new google.maps.LatLng(parseFloat(aqui.lat),parseFloat(aqui.lng))
+      }
     ]
   }, function(response, status) {
 
@@ -171,7 +197,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
         $("#view2").show();
       })
 
-    } 
+    }
 
 
   });
@@ -187,6 +213,8 @@ $("#orcar").click(function(){
 
     var lat = data.results[0].geometry.location.lat;
     var lng = data.results[0].geometry.location.lng;
+
+    Materialize.updateTextFields();
 
     aqui = {lat: lat, lng: lng};
 
@@ -211,10 +239,10 @@ $(".centerMap").click(function(){
 })
 
 $(function(){
- $(window).load(function(){
+  $(window).load(function(){
 
-  getLocation();
+    getLocation();
 
 
-});
+  });
 });
