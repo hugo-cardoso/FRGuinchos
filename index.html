@@ -187,7 +187,7 @@ function initMap(local) {
 
 function getAdress(lat,lng){
 
-  $.get( "http://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&sensor=false", function( data ) {
+  $.get( "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&sensor=false", function( data ) {
     console.log(data);
     $("#retirada").val(data.results[0].formatted_address);
   });
