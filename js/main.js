@@ -82,7 +82,7 @@ function center(lat,lng) {
     map: map,
     id: 'markerAqui',
     icon: {
-      'url':'img/pin.png',
+      'url':'/img/pin.png',
       scaledSize: new google.maps.Size(25, 50),
       origin: new google.maps.Point(0,0),
       anchor: new google.maps.Point(25, 50)
