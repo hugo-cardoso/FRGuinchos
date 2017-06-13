@@ -133,10 +133,10 @@
       <form>
 
         <label for="retirada">Retirada</label>
-        <input type="text" name="" value="" id="retirada" class="form-control" readonly="readony">
+        <input type="text" name="" value="" id="retirada" class="form-control" placeholder="Ex: Rua Xavier, 62 - São Paulo">
 
         <label for="destino">Destino</label>
-        <input type="text" name="" value="" id="destino" class="form-control">
+        <input type="text" name="" value="" id="destino" class="form-control" placeholder="Ex: Rua Xavier, 62 - São Paulo">
 
         <div style="width: 100%;">
 
@@ -164,43 +164,6 @@
 <script src="js/main.js"></script>
 <script>
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(initMap);
-  } else {
-    console.log("Geolocation is not supported by this browser.");
-  }
-}
-
-function initMap(local) {
-  here = {lat: local.coords.latitude, lng: local.coords.longitude};
-  getAdress(here.lat,here.lng);
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
-    center: here
-  });
-  var marker = new google.maps.Marker({
-    position: here,
-    map: map
-  });
-}
-
-function getAdress(lat,lng){
-
-  $.get( "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&sensor=false", function( data ) {
-    console.log(data);
-    $("#retirada").val(data.results[0].formatted_address);
-  });
-
-}
-
-$(function(){
-  $(window).load(function(){
-
-    getLocation();
-
-  });
-});
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgXBzHEtFvOvuuBktjuCH8r_e1_CC6LHU">

@@ -377,7 +377,7 @@ input.form-control {
   }
 
   .top-nav-container {
-    width: 800px;
+    width: 1024px;
     margin: 0 auto;
   }
 
@@ -415,7 +415,7 @@ input.form-control {
   */
 
   .container {
-    width: calc(800px - 30px);
+    width: calc(1024px - 30px);
     padding: 0px 15px;
     margin: 0px auto;
   }
