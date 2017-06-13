@@ -10,6 +10,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.9.32/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
   <link rel="stylesheet" href="css/normalize.css">
@@ -148,15 +149,38 @@
 
       <div id="view2" style="display: none;">
 
-      <div style="width: 100%;">
-        
-        <button id="voltarOrcar" class="btn">VOLTAR</button>
+        <div style="width: 100%;">
 
-      </div> 
+          <button id="voltarOrcar" class="btn-sm">VOLTAR</button>
 
-      <h1 id="price"></h1>
+        </div> 
 
-      <a href="https://api.whatsapp.com/send?phone=5511953977813&text=Preciso de um guincho!">Whatsapp</a>
+        <h1 id="price"></h1>
+
+        <p><i class="mdi mdi-road-variant orange"></i> <span id="distance"></span></p>
+        <p></p>
+
+        <div class="row">
+
+          <div class="col-xs-6" align="center">
+
+            <a id="whatsapp" class="btn-whatsapp" href="https://api.whatsapp.com/send?phone=5511953977813&text=Preciso de um guincho!"><i class="mdi mdi-whatsapp"></i> CHAMAR</a>
+
+          </div>
+
+          <div class="col-xs-6" align="center">
+
+            <a id="phone" class="btn-call" href="tel:5511953977813"><i class="mdi mdi-phone"></i> LIGAR</a>
+
+          </div>
+
+          <div class="col-xs-12" align="center">
+            
+          <img src="img/pagamentos.png" style="max-width: 100%;">
+
+          </div>
+
+        </div>
 
       </div>
 

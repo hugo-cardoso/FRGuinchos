@@ -146,16 +146,26 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       directionsDisplay.setDirections(response);
 
       var totalKm = 0;
+      var totalTime = 0;
 
       for (var i = 0; i < response.routes[0].legs.length; i++) {
 
         totalKm += response.routes[0].legs[i].distance.value;
+        totalTime += response.routes[0].legs[i].duration.value;
 
       }
 
       console.log(totalKm);
 
       getPriceKm(totalKm);
+
+      $("#distance").html(parseInt(totalKm / 1000) + "Km");
+
+      var whatsappLink = "https://api.whatsapp.com/send?phone=5511953977813&text="
+      var whatsappMsg = "*Preciso de um guincho!* "+"\r\n\r\n" + "*Origem*: " + retirada + "\r\n\r\n*Destino*: " + destino;
+      whatsappMsg = window.encodeURIComponent(whatsappMsg);
+
+      $("#whatsapp").attr("href", whatsappLink + whatsappMsg);
 
       $("#view1").hide(function(){
         $("#view2").show();
