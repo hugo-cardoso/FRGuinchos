@@ -45,7 +45,7 @@
         </div>
 
         <div class="adress_input">
-          <input type="text" id="retirada" value="Rua Xavier, 266">
+          <input type="text" id="retirada" value="" placeholder="Enter Adress">
         </div>
 
       </div>
@@ -65,7 +65,7 @@
 
       </div>
 
-      <div class="adress_line">
+      <div class="adress_line calc" style="display: none;">
 
         <button type="button" name="button" id="orcar">CALCULAR</button>
 
@@ -78,6 +78,22 @@
     </div>
 
     <div id="map"></div>
+
+  </div>
+
+  <div class="content">
+
+    <span class="msgWaiting">Insira os endereços nos campos acima, para um orçamento.</span>
+
+    <div class="orcamento" style="display: none;">
+
+      <h1 id="price"></h1>
+      <span id="distance"></span>
+
+      <button type="button" name="button" class="whatsapp btn-share">WHATSAPP</button>
+      <button type="button" name="button" class="whatsapp btn-share">LIGAR</button>
+
+    </div>
 
   </div>
 

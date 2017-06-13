@@ -151,7 +151,7 @@ MAP
   border-radius: 3px;
   width: calc(100% - 30px);
   background: #FFF;
-  z-index: 999;
+  z-index: 998;
   overflow: hidden;
 }
 
@@ -225,6 +225,51 @@ MAP
   z-index: 999;
   text-align: center;
   line-height: 50px;
+}
+
+/*
+  Content
+*/
+
+.content {
+  width: 100%;
+  padding: 5px;
+}
+
+.msgWaiting {
+  text-align: center;
+  color: #FFF;
+  font-size: 15px;
+  display: block;
+  padding: 20px;
+}
+
+.orcamento h1{
+  color: #FFF;
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+}
+
+.orcamento #distance {
+  color: #D6D6D5;
+  text-align: center;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.orcamento .btn-share {
+  width: 100%;
+  display: block;
+  height: 50px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  background: transparent;
+  margin-bottom: 5px;
+}
+
+.orcamento .btn-share:last-child {
+  margin-bottom: 0px;
 }
 
 @media screen and (min-width: 768px) {

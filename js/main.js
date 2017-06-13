@@ -15,13 +15,18 @@ $(".hamburger, aside a").click(function(){
 
 // Maps
 
-$("#voltarOrcar").click(function(){
+$(".adress_input input").keyup(function(){
 
-  $("#view2").hide(function(){
-    $("#view1").show();
-  })
+  var retirada = $("#retirada").val();
+  var destino = $("#destino").val();
 
-})
+  if(retirada.length > 0 && destino.length > 0){
+    $(".calc").show();
+  } else {
+    $(".calc").hide();
+  }
+
+});
 
 function deg2rad(deg) {
   return deg * (Math.PI/180)
@@ -62,7 +67,7 @@ function center(lat,lng) {
   map = new google.maps.Map(document.getElementById('map'), {
     mapTypeId: 'roadmap',
     zoom: 17,
-    center: new google.maps.LatLng(parseFloat(lat + 0.00090),parseFloat(lng)),
+    center: new google.maps.LatLng(parseFloat(lat + 0.00069),parseFloat(lng)),
     zoomControl: false,
     scaleControl: true,
     streetViewControl: false,
@@ -213,8 +218,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
       $("#whatsapp").attr("href", whatsappLink + whatsappMsg);
 
-      $("#view1").hide(function(){
-        $("#view2").show();
+      $(".msgWaiting").hide(function(){
+        $(".orcamento").show();
       })
 
     }
