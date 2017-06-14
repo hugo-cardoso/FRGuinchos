@@ -54,8 +54,8 @@ function getLocation() {
       console.log("GPS Desligado.");
 
       aqui = {
-        lat: Number(-23.5505487),
-        lng: Number(-46.436233)
+        lat: Number(-23.6821604),
+        lng: Number(-46.8754984)
       };
       center(aqui.lat,aqui.lng);
 
@@ -101,7 +101,6 @@ function center(lat,lng) {
     }
   });
 
-
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
   directionsDisplay.setMap(map);
@@ -112,10 +111,11 @@ function center(lat,lng) {
     });
   });
 
-
 }
 
 function centerMap(){
+  marker.setMap(null);
+  getLocation();
   var latLng = marker.getPosition();
   offsetCenter(latLng,0,0.2);
 }
@@ -219,11 +219,15 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
       $("#distance").html(parseInt(totalKm / 1000) + "Km");
 
+      $("#centerMap").toggleClass("disabled");
+
+      $(".calc").hide();
+
       var whatsappLink = "https://api.whatsapp.com/send?phone=5511953977813&text="
       var whatsappMsg = "*Preciso de um guincho!* "+"\r\n\r\n" + "*Origem*: " + retirada + "\r\n\r\n*Destino*: " + destino;
       whatsappMsg = window.encodeURIComponent(whatsappMsg);
 
-      $("whatsapp").attr("href", whatsappLink + whatsappMsg);
+      $(".whatsapp").attr("href", whatsappLink + whatsappMsg);
 
       $(".msgWaiting").hide(function(){
         $(".orcamento").show();
