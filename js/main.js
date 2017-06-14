@@ -88,6 +88,10 @@ $(".adress_input input").keyup(function(){
 
 });
 
+$(".adress_input input#retirada").focus(function(){
+  $("#centerMap").removeClass("disabled");
+});
+
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }

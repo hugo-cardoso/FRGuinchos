@@ -295,7 +295,7 @@ MAP
 
 .adress #orcar {
   width: 100%;
-  height: 40px;
+  height: 50px;
   background: #000;
   color: #FFF;
   border: 0px;
@@ -405,8 +405,17 @@ AutoComplete
   display: none;
 }
 
+.pac-item {
+  line-height: 45px;
+}
+
+.pac-item:first-child {
+  border-top: 0px;
+}
+
 .hdpi.pac-logo:after {
   background: none;
+  display: none;
 }
 
 .gm-style-cc, .gmnoprint {
