@@ -127,10 +127,22 @@ function center(lat,lng) {
 }
 
 function centerMap(){
-  marker.setMap(null);
-  getLocation();
-  var latLng = marker.getPosition();
-  offsetCenter(latLng,0,0.2);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position){
+
+      marker.setMap(null);
+      getLocation();
+      var latLng = marker.getPosition();
+      offsetCenter(latLng,0,0.2);
+
+    }, function(){
+
+      createMessage("Por favor, ligue o GPS.");
+
+    });
+  }  
+  
 }
 
 function offsetCenter(latlng, offsetX, offsetY) {
@@ -270,7 +282,7 @@ $("#orcar").click(function(){
       $("#destino").val(data2.results[0].formatted_address);
 
       for (var i = 0; i < data2.results[0].address_components.length; i++) {
-        
+
         if(data2.results[0].address_components[i].short_name === "SP") {
           fretesp = true;
         } else {
@@ -286,7 +298,7 @@ $("#orcar").click(function(){
         calculateAndDisplayRoute(directionsService, directionsDisplay);
 
       } else {
-        
+
         createMessage("Fretes apenas para São Paulo.");
 
       }
