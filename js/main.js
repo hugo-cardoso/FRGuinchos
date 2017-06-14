@@ -24,10 +24,10 @@ function createMessage(msg){
 
   var elm = $(".message");
 
-  $(elm).toggleClass("active").promise().done(function(){
+  $(elm).addClass("active").promise().done(function(){
     $(elm).html(msg);
     setTimeout(function(){
-      $(elm).toggleClass("active");
+      $(elm).removeClass("active");
     }, 5000);
   });
 
@@ -64,7 +64,7 @@ function getLocation() {
 
     }, function(){
 
-      createMessage("Por favor, ligue o GPS.");
+      createMessage("Seu GPS está desligado.");
 
       aqui = {
         lat: Number(-23.5521281),
@@ -78,6 +78,8 @@ function getLocation() {
     console.log("Teste");
 
   }
+
+  console.log(navigator.geolocation);
 
 }
 
