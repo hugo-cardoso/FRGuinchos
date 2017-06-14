@@ -348,6 +348,21 @@ MAP
   margin-bottom: 0px;
 }
 
+/*
+  AutoComplete
+*/
+.pac-container {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.pac-container .pac-item .pac-icon{
+  display: none;
+}
+
+.hdpi.pac-logo:after {
+  background: none;
+}
+
 @media screen and (min-width: 768px) {
 
   /*

@@ -63,7 +63,7 @@
         </div>
 
         <div class="adress_input">
-          <input type="text" id="retirada" value="" placeholder="Enter Adress" autocomplete="off">
+          <input type="text" id="retirada" value="" placeholder="Enter Adress" autocomplete="off" onFocus="geolocate()">
         </div>
 
       </div>
@@ -78,7 +78,7 @@
         </div>
 
         <div class="adress_input">
-          <input type="text" id="destino" placeholder="Enter Destination" autocomplete="off">
+          <input type="text" id="destino" placeholder="Enter Destination" autocomplete="off" onFocus="geolocate()">
         </div>
 
       </div>
@@ -129,7 +129,7 @@
 
   </script>
   <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgXBzHEtFvOvuuBktjuCH8r_e1_CC6LHU">
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgXBzHEtFvOvuuBktjuCH8r_e1_CC6LHU&libraries=places">
   </script>
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
   <script>
