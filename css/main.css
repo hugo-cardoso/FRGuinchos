@@ -195,7 +195,7 @@ MAP
 
 .map {
   width: 100%;
-  height: 350px;
+  height: 400px;
   background: #D6D6D5;
   position: relative;
 }
@@ -290,80 +290,103 @@ MAP
 
 /*
   Content
-*/
+  */
 
-.content {
-  width: 100%;
-  padding: 5px;
-}
+  .content {
+    width: 100%;
+    padding: 5px;
+  }
 
-.msgWaiting {
-  text-align: center;
-  color: #FFF;
-  font-size: 15px;
-  display: block;
-  padding: 20px;
-}
+  .msgWaiting {
+    text-align: center;
+    color: #FFF;
+    font-size: 15px;
+    display: block;
+    padding: 20px;
+  }
 
-.orcamento h1{
-  color: #FFF;
-  text-align: center;
-  padding: 0px;
-  margin: 0px;
-}
+  .orcamento h1{
+    color: #FFF;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+  }
 
-.orcamento #distance {
-  color: #D6D6D5;
-  text-align: center;
-  display: block;
-  margin-bottom: 5px;
-}
+  .orcamento #distance {
+    color: #D6D6D5;
+    text-align: center;
+    display: block;
+    margin-bottom: 5px;
+  }
 
-.orcamento .btn-share {
-  width: 100%;
-  display: block;
-  height: 50px;
-  border: 1px solid #FFF;
-  color: #FFF;
-  background: transparent;
-  margin-bottom: 5px;
-  text-decoration: none;
-  line-height: 50px;
-  text-align: center;
-}
+  .orcamento .btn-share {
+    width: 100%;
+    display: block;
+    height: 50px;
+    border: 1px solid #FFF;
+    color: #FFF;
+    background: transparent;
+    margin-bottom: 5px;
+    text-decoration: none;
+    line-height: 50px;
+    text-align: center;
+  }
 
-.orcamento .btn-share.whatsapp {
-  border: 1px solid #009688;
-  color: #FFF;
-  background: #009688;
-}
+  .orcamento .btn-share.whatsapp {
+    border: 1px solid #009688;
+    color: #FFF;
+    background: #009688;
+  }
 
-.orcamento .btn-share.phone {
-  border: 1px solid #FFF;
-  color: #000;
-  background: #FFF;
-}
+  .orcamento .btn-share.phone {
+    border: 1px solid #FFF;
+    color: #000;
+    background: #FFF;
+  }
 
-.orcamento .btn-share:last-child {
-  margin-bottom: 0px;
-}
+  .orcamento .btn-share:last-child {
+    margin-bottom: 0px;
+  }
 
 /*
   AutoComplete
-*/
-.pac-container {
-  font-family: 'Open Sans', sans-serif;
-}
+  */
+  .pac-container {
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 0px;
+  }
 
-.pac-container .pac-item .pac-icon{
-  display: none;
-}
+  .pac-container .pac-item .pac-icon{
+    display: none;
+  }
 
-.hdpi.pac-logo:after {
-  background: none;
-}
+  .hdpi.pac-logo:after {
+    background: none;
+  }
 
-@media screen and (min-width: 768px) {
+/*
+  Notification
+  */
+
+  .message {
+    width: calc(100% - 30px);
+    height: auto;
+    padding: 10px;
+    background: #FFF;
+    color: #000;
+    text-align: center;
+    position: fixed;
+    bottom: -50px;
+    left: 15px;
+    border-radius: 3px;
+    transition: bottom .3s linear;
+  }
+
+  .message.active {
+    bottom: 15px;
+  }
+
+  @media screen and (min-width: 768px) {
 
   /*
   Desktop

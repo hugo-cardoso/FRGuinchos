@@ -20,6 +20,19 @@ $(".menu-icon, .aside-bg").click(function(){
 
 });
 
+function createMessage(msg){
+
+  var elm = $(".message");
+
+  $(elm).toggleClass("active").promise().done(function(){
+    $(elm).html(msg);
+    setTimeout(function(){
+      $(elm).toggleClass("active");
+    }, 5000);
+  });
+
+}
+
 // Maps
 
 $(".adress_input input").keyup(function(){
@@ -51,11 +64,11 @@ function getLocation() {
 
     }, function(){
 
-      console.log("GPS Desligado.");
+      createMessage("Por favor, ligue o GPS.");
 
       aqui = {
-        lat: Number(-23.6821604),
-        lng: Number(-46.8754984)
+        lat: Number(-23.5521281),
+        lng: Number(-46.6353305)
       };
       center(aqui.lat,aqui.lng);
 
@@ -81,12 +94,12 @@ function center(lat,lng) {
     fullscreenControl: false,
     mapTypeControl: false,
     styles: [
-      {
-        featureType: 'poi',
-        stylers: [
-          { visibility: "off" }
-        ]
-      }
+    {
+      featureType: 'poi',
+      stylers: [
+      { visibility: "off" }
+      ]
+    }
     ]
   });
   marker = new google.maps.Marker({
@@ -144,8 +157,8 @@ $("#centerMap").click(function(){
 function getAdress(lat,lng){
 
   $.get( "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&sensor=false", function( data ) {
-    console.log(data);
     $("#retirada").val(data.results[0].formatted_address);
+    return data.results[0].formatted_address;
   });
 
 }
@@ -193,9 +206,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     destination: destino,
     travelMode: 'DRIVING',
     waypoints: [
-      {
-        location: new google.maps.LatLng(parseFloat(aqui.lat),parseFloat(aqui.lng))
-      }
+    {
+      location: new google.maps.LatLng(parseFloat(aqui.lat),parseFloat(aqui.lng))
+    }
     ]
   }, function(response, status) {
 
@@ -250,17 +263,33 @@ $("#orcar").click(function(){
     var lat = data.results[0].geometry.location.lat;
     var lng = data.results[0].geometry.location.lng;
 
-    Materialize.updateTextFields();
-
     aqui = {lat: lat, lng: lng};
 
     $.get( "https://maps.googleapis.com/maps/api/geocode/json?address=" + destino + "&key=AIzaSyAgXBzHEtFvOvuuBktjuCH8r_e1_CC6LHU", function( data2 ) {
 
       $("#destino").val(data2.results[0].formatted_address);
 
-      destinoCoord = data2.results[0].geometry.location;
+      for (var i = 0; i < data2.results[0].address_components.length; i++) {
+        
+        if(data2.results[0].address_components[i].short_name === "SP") {
+          fretesp = true;
+        } else {
+          fretesp = false;
+        }
 
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
+      }
+
+      if(fretesp === true) {
+
+        fretesp = false;
+        destinoCoord = data2.results[0].geometry.location;
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+      } else {
+        
+        createMessage("Fretes apenas para São Paulo.");
+
+      }
 
     });
 
@@ -283,34 +312,34 @@ function initAutocomplete() {
     /** @type {!HTMLInputElement} */(document.getElementById('retirada')),
     {types: ['geocode']});
 
-    autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */(document.getElementById('destino')),
-      {types: ['geocode']});
+  autocomplete = new google.maps.places.Autocomplete(
+    /** @type {!HTMLInputElement} */(document.getElementById('destino')),
+    {types: ['geocode']});
 
-    }
+}
 
-    function geolocate() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          var geolocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          };
-          var circle = new google.maps.Circle({
-            center: geolocation,
-            radius: position.coords.accuracy
-          });
-          autocomplete.setBounds(circle.getBounds());
-        });
-      }
-    }
-
-    $(function(){
-      $(window).load(function(){
-
-        getLocation();
-        initAutocomplete();
-
-
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
       });
+      autocomplete.setBounds(circle.getBounds());
     });
+  }
+}
+
+$(function(){
+  $(window).load(function(){
+
+    getLocation();
+    initAutocomplete();
+
+
+  });
+});
