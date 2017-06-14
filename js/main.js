@@ -149,7 +149,8 @@ function onProgress(position){
 function getLocation() {
     var output = document.getElementById("retirada");  // the div where messages will appear
     var options = {
-      desiredAccuracy:20
+      desiredAccuracy:20,
+      maxWait: 5000
     };
     function geolocationSuccess(position) {
         var latitude = position.coords.latitude;
@@ -164,6 +165,7 @@ function getLocation() {
     function geoprogress() {
         output.innerHTML = '<p>Locating in progress</p>';
     }
+
     navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
 }
 
