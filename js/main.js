@@ -287,8 +287,6 @@ $("#orcar").click(function(){
 
         if(data2.results[0].address_components[i].short_name === "SP") {
           fretesp = true;
-        } else {
-          fretesp = false;
         }
 
       }
