@@ -96,36 +96,77 @@ function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position){
+// function getLocation() {
+//   if (navigator.geolocation) {
+//     navigator.geolocation.getCurrentPosition(function(position){
 
-      aqui = {
-        lat: Number(position.coords.latitude),
-        lng: Number(position.coords.longitude)
-      };
-      center(aqui.lat,aqui.lng);
+//       aqui = {
+//         lat: Number(position.coords.latitude),
+//         lng: Number(position.coords.longitude)
+//       };
+//       center(aqui.lat,aqui.lng);
 
-    }, function(){
+//     }, function(){
 
-      createMessage("Seu GPS está desligado.");
+//       createMessage("Seu GPS está desligado.");
 
-      aqui = {
-        lat: Number(-23.5521281),
-        lng: Number(-46.6353305)
-      };
-      center(aqui.lat,aqui.lng);
+//       aqui = {
+//         lat: Number(-23.5521281),
+//         lng: Number(-46.6353305)
+//       };
+//       center(aqui.lat,aqui.lng);
 
-    });
-  } else {
+//     });
+//   } else {
 
-    console.log("Teste");
+//     console.log("Teste");
 
-  }
+//   }
 
-  console.log(navigator.geolocation);
+//   console.log(navigator.geolocation);
+
+// }
+
+function onSuccess(position){
+
+  console.log(position);
+  aqui = {
+    lat: Number(position.coords.latitude),
+    lng: Number(position.coords.longitude)
+  };
+  center(aqui.lat,aqui.lng);
 
 }
+
+function onError(position){
+  console.log(position)
+}
+
+function onProgress(position){
+  console.log(position)
+}
+
+function getLocation() {
+    var output = document.getElementById("retirada");  // the div where messages will appear
+    var options = {
+      desiredAccuracy:20
+    };
+    function geolocationSuccess(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        output.innerHTML = 'Latitude: ' + latitude + '<br/>Longitude: ' + longitude
+    }
+
+    function geolocationError() {
+        output.innerHTML = "Unable to retrieve your location";
+    }
+
+    function geoprogress() {
+        output.innerHTML = '<p>Locating in progress</p>';
+    }
+    navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+}
+
 
 function center(lat,lng) {
 
