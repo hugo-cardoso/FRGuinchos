@@ -48,7 +48,7 @@
 
     <ul class="aside-items">
       <li>
-      <a href="#orcamento">
+        <a href="#orcamento">
           <i class="mdi mdi-google-maps"></i>
           Orçamento
         </a>
@@ -140,15 +140,32 @@
 
     <div class="orcamento" style="display: none;">
 
-      <h1 id="price"></h1>
-      <span id="distance"></span>
+      <div style="width: 100%; float: left;">
+
+        <h1 id="price"></h1>
+        <span id="distance"></span>
+
+      </div>
+
+      <div class="carTipos">
+
+        <input id="carTipo1" type="radio" name="carTipo" value="pequeno" checked="checked" onclick="getPriceKmRecalculate();">
+        <label for="carTipo1">pequeno</label>
+
+        <input id="carTipo2" type="radio" name="carTipo" value="medio" onclick="getPriceKmRecalculate();">
+        <label for="carTipo2">médio</label>
+
+        <input id="carTipo3" type="radio" name="carTipo" value="grande" onclick="getPriceKmRecalculate();">
+        <label for="carTipo3">grande</label>
+
+      </div>
 
       <a class="whatsapp btn-share">WHATSAPP</a>
       <a href="tel:5511953977813" class="phone btn-share">LIGAR</a>
 
-      <div align="center">
+      <!-- <div align="center">
         <img src="img/pagamentos.png" style="max-width: 80%; margin: 0 auto;" alt="">
-      </div>
+      </div> -->
 
     </div>
 

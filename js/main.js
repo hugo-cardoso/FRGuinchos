@@ -657,11 +657,43 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 
 function getPriceKm(km){
 
+  var tipoCar = $('input[name=carTipo]:checked').val();
   var distante = parseInt(km  / 1000);
-  var price = 120 + (2 * distante);
+  
+  if(tipoCar === "pequeno"){
+    var price = 120 + (2 * distante);
+  }
+  else if(tipoCar === "medio") {
+    var price = 120 + (3 * distante);
+  } 
+  else if(tipoCar === "grande"){
+    var price = 120 + (5 * distante);
+  }
+
   var price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-  console.log("Preço: R$" + price)
+  console.log("Preço: " + price)
+  $("#price").html(price);
+
+}
+
+function getPriceKmRecalculate(){
+
+  var tipoCar = $('input[name=carTipo]:checked').val();
+  var distante = parseInt(totalKm  / 1000);
+
+  if(tipoCar === "pequeno"){
+    var price = 120 + (2 * distante);
+  }
+  else if(tipoCar === "medio") {
+    var price = 120 + (3 * distante);
+  } 
+  else if(tipoCar === "grande"){
+    var price = 120 + (5 * distante);
+  }
+
+  var price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
   $("#price").html(price);
 
 }
@@ -689,8 +721,8 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
       console.log(response);
       directionsDisplay.setDirections(response);
 
-      var totalKm = 0;
-      var totalTime = 0;
+      totalKm = 0;
+      totalTime = 0;
 
       for (var i = 0; i < response.routes[0].legs.length; i++) {
 
