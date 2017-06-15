@@ -172,6 +172,12 @@ function getLocation() {
 
           console.log("Aguardando autorização de GPS.");
 
+          navigator.geolocation.getCurrentPosition(function(position){
+
+            console.log(position);
+
+          });
+
         } else if (result.state == 'denied') {
 
           createMessage("Você recusou as permissões de acesso ao GPS.");
@@ -194,7 +200,7 @@ function getLocation() {
               getLocation();
 
             });
-            
+
           }
 
         }
