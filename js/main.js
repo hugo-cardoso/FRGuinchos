@@ -182,11 +182,11 @@ function getLocation() {
 
           createMessage("Você recusou as permissões de acesso ao GPS.");
 
-          navigator.permissions.revoke({name:'geolocation'}).then(function(result) {
-
-            getLocation();
-
-          });
+          aqui = {
+            lat: Number(-23.5521281),
+            lng: Number(-46.6353305)
+          };
+          center(aqui.lat,aqui.lng);
 
         }
         result.onchange = function() {
@@ -195,11 +195,13 @@ function getLocation() {
             navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
           }else {
 
-            navigator.permissions.revoke({name:'geolocation'}).then(function(result) {
+            createMessage("Não é possível utilizar o GPS.");
 
-              getLocation();
-
-            });
+            aqui = {
+              lat: Number(-23.5521281),
+              lng: Number(-46.6353305)
+            };
+            center(aqui.lat,aqui.lng);
 
           }
 
