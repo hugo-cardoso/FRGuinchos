@@ -163,7 +163,30 @@ function getLocation() {
     
     if (navigator.geolocation){
 
-      navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+      navigator.permissions.query({name:'geolocation'}).then(function(result) {
+        if (result.state == 'granted') {
+
+          navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+
+        } else if (result.state == 'prompt') {
+
+          navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+
+        } else if (result.state == 'denied') {
+
+          createMessage("Você recusou as permissões de acesso ao GPS.");
+
+          navigator.permissions.revoke({name:'geolocation'}).then(function(result) {
+
+            getLocation();
+
+          });
+
+        }
+        result.onchange = function() {
+          console.log(result.state);
+        }
+      });
 
     }
 
