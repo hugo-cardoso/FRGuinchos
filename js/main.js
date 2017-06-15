@@ -170,7 +170,7 @@ function getLocation() {
 
         } else if (result.state == 'prompt') {
 
-          navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+          console.log("Aguardando autorização de GPS.");
 
         } else if (result.state == 'denied') {
 
@@ -184,7 +184,19 @@ function getLocation() {
 
         }
         result.onchange = function() {
-          console.log(result.state);
+
+          if(result.state == "granted"){
+            navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+          }else {
+
+            navigator.permissions.revoke({name:'geolocation'}).then(function(result) {
+
+              getLocation();
+
+            });
+            
+          }
+
         }
       });
 
