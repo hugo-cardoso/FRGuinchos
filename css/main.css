@@ -502,6 +502,91 @@ section p {
   padding: 0px 15px;
 }
 
+.services ul {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  width: 100%;
+}
+
+.services ul li {
+  display: block;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  background: #000;
+  float: left;
+  border: 1px solid #FFF;
+  margin-bottom: 5px;
+}
+
+.services ul li .icon{
+  width: 50px;
+  height: 49px;
+  line-height: 50px;
+  background: #FFF;
+  color: #000;
+  text-align: center;
+  float: left;
+}
+
+.services ul li .text{
+  width: calc(100%);
+  height: 49px;
+  padding: 0px 10px;
+  line-height: 49px;
+  margin-left: -50px;
+  color: #FFF;
+  text-align: center;
+  float: left;
+}
+
+#contatos form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #FFF;
+  float: left;
+}
+
+#contatos form input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  background: transparent;
+  padding: 0px 5px;
+  margin-bottom: 5px;
+  float: left;
+}
+
+#contatos form textarea {
+  width: 100%;
+  height: 200px;
+  border: 1px solid #FFF;
+  color: #FFF;
+  background: transparent;
+  padding: 5px;
+  margin-bottom: 5px;
+  resize: vertical;
+  float: left;
+}
+
+#contatos form .submit {
+  width: 100%;
+  display: block;
+  height: 50px;
+  border: 1px solid #FFF;
+  color: #000;
+  background: #FFF;
+  margin-bottom: 5px;
+  text-decoration: none;
+  line-height: 50px;
+  text-align: center;
+  text-transform: uppercase;
+  float: left;
+}
+
+
 @media screen and (min-width: 768px) {
 
   /*
@@ -518,6 +603,10 @@ Helper classes
 /*
 * Hide visually and from screen readers
 */
+
+.bold {
+  font-weight: 600;
+}
 
 .hidden {
   display: none !important;

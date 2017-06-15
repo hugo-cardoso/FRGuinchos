@@ -657,7 +657,7 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 
 function getPriceKm(km){
 
-  var tipoCar = $('input[name=carTipo]:checked').val();
+  tipoCar = $('input[name=carTipo]:checked').val();
   var distante = parseInt(km  / 1000);
   
   if(tipoCar === "Pequeno"){
@@ -670,34 +670,48 @@ function getPriceKm(km){
     var price = 120 + (5 * distante);
   }
 
-  var price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   console.log("Preço: " + price)
   $("#price").html(price);
 
   return price;
 
+  whatsAppLink();
+
 }
 
 function getPriceKmRecalculate(){
 
-  var tipoCar = $('input[name=carTipo]:checked').val();
+  tipoCar = $('input[name=carTipo]:checked').val();
   var distante = parseInt(totalKm  / 1000);
 
-  if(tipoCar === "pequeno"){
+  if(tipoCar === "Pequeno"){
     var price = 120 + (2 * distante);
   }
-  else if(tipoCar === "medio") {
+  else if(tipoCar === "Médio") {
     var price = 120 + (3 * distante);
   } 
-  else if(tipoCar === "grande"){
+  else if(tipoCar === "Grande"){
     var price = 120 + (5 * distante);
   }
 
-  var price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  price = price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   $("#price").html(price);
 
+  whatsAppLink();
+
+}
+
+function whatsAppLink(){
+  var destino = document.getElementById("destino").value;
+  var retirada = document.getElementById("retirada").value;
+  var tipoCar = $('input[name=carTipo]:checked').val();
+  var whatsappLink = "https://api.whatsapp.com/send?phone=5511953977813&text="
+  var whatsappMsg = "*Preciso de um guincho!* "+"\r\n\r\n" + "*Origem*: " + retirada + "\r\n\r\n*Destino*: " + destino + "\r\n\r\n*Tamanho*: " + tipoCar + "\r\n\r\n*Total*: " + getPriceKm(totalKm);
+  whatsappMsg = window.encodeURIComponent(whatsappMsg);
+  $(".whatsapp").attr("href", whatsappLink + whatsappMsg);
 }
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
@@ -733,9 +747,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
       }
 
-      console.log(totalKm);
-
       getPriceKm(totalKm);
+
+      whatsAppLink();
 
       $("#distance").html(parseInt(totalKm / 1000) + "Km");
 
@@ -743,19 +757,9 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
       $(".calc").hide();
 
-      var price = getPriceKm(totalKm);
-
-      var tipoCar = $('input[name=carTipo]:checked').val();
-
-      var whatsappLink = "https://api.whatsapp.com/send?phone=5511953977813&text="
-      var whatsappMsg = "*Preciso de um guincho!* "+"\r\n\r\n" + "*Origem*: " + retirada + "\r\n\r\n*Destino*: " + destino + "\r\n\r\n*Tamanho*: " + tipoCar + "\r\n\r\n*Total: " + price;
-      whatsappMsg = window.encodeURIComponent(whatsappMsg);
-
-      $(".whatsapp").attr("href", whatsappLink + whatsappMsg);
-
       $(".msgWaiting").hide(function(){
         $(".orcamento").show();
-      })
+      });
 
     }
 
