@@ -139,7 +139,7 @@ function onSuccess(position){
 }
 
 function onError(position){
-  
+
   createMessage("Seu GPS está desligado.");
 
   aqui = {
@@ -147,7 +147,7 @@ function onError(position){
     lng: Number(-46.6353305)
   };
   center(aqui.lat,aqui.lng);
-  
+
 }
 
 function onProgress(position){
@@ -160,21 +160,13 @@ function getLocation() {
       desiredAccuracy:20,
       maxWait: 5000
     };
-    function geolocationSuccess(position) {
-      var latitude = position.coords.latitude;
-      var longitude = position.coords.longitude;
-      output.innerHTML = 'Latitude: ' + latitude + '<br/>Longitude: ' + longitude
+    
+    if (navigator.geolocation){
+
+      navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
+
     }
 
-    function geolocationError() {
-      output.innerHTML = "Unable to retrieve your location";
-    }
-
-    function geoprogress() {
-      output.innerHTML = '<p>Locating in progress</p>';
-    }
-
-    navigator.geolocation.getAccurateCurrentPosition(onSuccess, onError, onProgress, options);
   }
 
 
